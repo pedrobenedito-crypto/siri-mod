@@ -1,5 +1,7 @@
 {
   "entity.siri.siri": "Siri",
+  "entity.siri.king_crab": "King Crab",
   "item.siri.siri_bucket": "Bucket of Siri",
-  "item.siri.siri_spawn_egg": "Siri Spawn Egg"
+  "item.siri.siri_spawn_egg": "Siri Spawn Egg",
+  "item.siri.king_crab_spawn_egg": "King Crab Spawn Egg"
 }

@@ -19,4 +19,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> SIRI_SPAWN_EGG = ITEMS.register("siri_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.SIRI, 0xD9532E, 0x2B1A12, new Item.Properties()));
+
+    public static final RegistryObject<Item> KING_CRAB_SPAWN_EGG = ITEMS.register("king_crab_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.KING_CRAB, 0x7A1F17, 0xE0B070, new Item.Properties()));
 }

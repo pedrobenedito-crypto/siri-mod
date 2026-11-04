@@ -1,5 +1,6 @@
 package com.example.siri;
 
+import com.example.siri.entity.KingCrabEntity;
 import com.example.siri.entity.SiriEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -17,4 +18,10 @@ public class ModEntities {
                     .sized(0.7f, 0.5f)
                     .clientTrackingRange(8)
                     .build(new ResourceLocation(SiriMod.MODID, "siri").toString()));
+
+    public static final RegistryObject<EntityType<KingCrabEntity>> KING_CRAB = ENTITIES.register("king_crab",
+            () -> EntityType.Builder.of(KingCrabEntity::new, MobCategory.MONSTER)
+                    .sized(1.6f, 1.1f)
+                    .clientTrackingRange(10)
+                    .build(new ResourceLocation(SiriMod.MODID, "king_crab").toString()));
 }

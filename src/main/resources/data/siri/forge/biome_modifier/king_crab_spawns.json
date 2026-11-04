@@ -1,0 +1,5 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": ["minecraft:beach", "minecraft:desert"],
+  "spawners": { "type": "siri:king_crab", "weight": 4, "minCount": 1, "maxCount": 1 }
+}

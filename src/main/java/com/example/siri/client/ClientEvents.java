@@ -13,10 +13,12 @@ public class ClientEvents {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.SIRI.get(), SiriRenderer::new);
+        event.registerEntityRenderer(ModEntities.KING_CRAB.get(), KingCrabRenderer::new);
     }
 
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(SiriModel.LAYER, SiriModel::createBodyLayer);
+        event.registerLayerDefinition(KingCrabModel.LAYER, KingCrabModel::createBodyLayer);
     }
 }
