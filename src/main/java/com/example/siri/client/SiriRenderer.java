@@ -3,6 +3,7 @@ package com.example.siri.client;
 import com.example.siri.SiriMod;
 import com.example.siri.entity.SiriEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +25,16 @@ public class SiriRenderer extends MobRenderer<SiriEntity, SiriModel> {
     @Override
     protected void scale(SiriEntity entity, PoseStack poseStack, float partialTick) {
         float p = entity.getBurrowProgress(partialTick);
-        poseStack.translate(0.0f, 0.55f * p, 0.0f);
+        poseStack.translate(0.0f, 0.8f * p, 0.0f);
+    }
+
+    @Override
+    public void render(SiriEntity entity, float entityYaw, float partialTicks, PoseStack poseStack,
+                       MultiBufferSource buffer, int packedLight) {
+        float p = entity.getBurrowProgress(partialTicks);
+        if (p >= 0.99f) return;               // totalmente enterrado: nao desenha nada
+        this.shadowRadius = 0.35f * (1.0f - p); // sombra some junto com ele
+        super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }
 
     @Override

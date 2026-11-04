@@ -75,7 +75,8 @@ public class SiriModel extends EntityModel<SiriEntity> {
         // corpo treme enquanto se enterra / sai da areia
         body.x = transition ? Mth.sin(ageInTicks * 2.5f) * 0.8f : 0f;
 
-        // pernas
+        // pernas: somem assim que ele comeca a descer na areia
+        boolean showLegs = p < 0.3f;
         for (int i = 0; i < 4; i++) {
             float phase = i * 0.9f;
             float swingR = Mth.cos(limbSwing * 1.4f + phase) * limbSwingAmount * 0.7f;
@@ -84,6 +85,8 @@ public class SiriModel extends EntityModel<SiriEntity> {
             float liftL = Math.max(0f, Mth.sin(limbSwing * 1.4f + phase + Mth.PI)) * limbSwingAmount * 0.5f;
             float yawBase = (i - 1.5f) * 0.15f;
 
+            rightLegs[i].visible = showLegs;
+            leftLegs[i].visible = showLegs;
             rightLegs[i].zRot = Mth.lerp(p, 0.8f - liftR, 1.3f);
             rightLegs[i].yRot = yawBase + swingR;
             leftLegs[i].zRot = -Mth.lerp(p, 0.8f - liftL, 1.3f);

@@ -125,7 +125,7 @@ public class SiriEntity extends PathfinderMob implements Bucketable {
 
         if (this.level().isClientSide) {
             if (this.burrowProgress != this.burrowProgressO) {
-                spawnSandParticles();
+                spawnSandParticles(8, 0.12D);
             }
         } else {
             serverBurrowLogic();
@@ -156,15 +156,25 @@ public class SiriEntity extends PathfinderMob implements Bucketable {
         }
     }
 
-    private void spawnSandParticles() {
+    private void spawnSandParticles(int count, double upSpeed) {
         BlockState state = this.level().getBlockState(this.blockPosition().below());
         if (state.isAir()) return;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < count; i++) {
             this.level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state),
-                    this.getX() + (this.random.nextDouble() - 0.5D) * 0.6D,
+                    this.getX() + (this.random.nextDouble() - 0.5D) * 0.9D,
                     this.getY() + 0.05D,
-                    this.getZ() + (this.random.nextDouble() - 0.5D) * 0.6D,
-                    (this.random.nextDouble() - 0.5D) * 0.1D, 0.15D, (this.random.nextDouble() - 0.5D) * 0.1D);
+                    this.getZ() + (this.random.nextDouble() - 0.5D) * 0.9D,
+                    (this.random.nextDouble() - 0.5D) * 0.25D,
+                    upSpeed + this.random.nextDouble() * 0.15D,
+                    (this.random.nextDouble() - 0.5D) * 0.25D);
+        }
+    }
+
+    @Override
+    public void onSyncedDataUpdated(EntityDataAccessor<?> accessor) {
+        super.onSyncedDataUpdated(accessor);
+        if (BURROWED.equals(accessor) && this.level().isClientSide) {
+            spawnSandParticles(30, 0.2D); // explosao de areia ao descer e ao subir
         }
     }
 
